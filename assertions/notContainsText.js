@@ -51,5 +51,4 @@ exports.assertion = function(selector, text, msg) {
   this.command = function(callback) {
     return this.api.getText(selector, callback)
   }
-
 }
