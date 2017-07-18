@@ -10,18 +10,21 @@ const afterEach = (client, done) => {
 
 // in order to share common functions between multiple page objects we have to wrap it in an object
 const globalCommands = {
-  localiseSelectors() {
-    for (const element of Object.keys(this.elements)) {
-      if (pages[element]) {
-        this.elements[element].selector = util.format(this.elements[element].selector, `${language}${pages[element]}`)
-      }
-    }
-    return this
-  },
   clickElement(element) {
     return this
       .waitForElementVisible(element, `Waiting for ${element} to be visible`)
       .click(element)
+  },
+  inputData(element, data) {
+    return this
+      .waitForElementVisible(element, `Waiting for ${element} to be visible in order to set value: ${data}`)
+      .clearValue(element)
+      .setValue(element, data)
+  },
+  clearInput(element) {
+    return this
+      .waitForElementVisible(element, `Waiting for ${element} to be visible so we can clear any input`)
+      .clearValue(element)
   },
   checkVisibility(element) {
     return this
@@ -37,15 +40,32 @@ const globalCommands = {
       .waitForElementNotVisible(element, `Waiting for ${element} to be invisible`)
       .assert.hidden(element, `Testing if ${element} is invisible`)
   },
+  testContainsText(element, text, message) {
+    return this
+      .waitForElementVisible(element, `Waiting for ${element} to be visible`)
+      .assert.containsText(element, text, message)
+  },
+  testInputValueContainsText(element, text, message) {
+    return this
+      .waitForElementVisible(element, `Waiting for ${element} to be visible`)
+      .assert.valueContains(element, text, message)
+  },
+  testNotPresent(element) {
+    return this
+      .waitForElementNotPresent(element, `Waiting for ${element} to not be present`)
+      .assert.elementNotPresent(element, `Testing if ${element} is not present`)
+  },
   testCookieMatch(cookie, expected) {
     this.api.getCookie(cookie, result => {
-      return this.assert.equal(result.value, expected, `Testing that stored cookie: ${cookie} is equal to ${expected}`)
+      this.assert.equal(result.value, expected, `Testing that stored cookie: ${cookie} is equal to ${expected}`)
     })
+    return this
   },
   testCookieAbsence(cookie) {
     this.api.getCookie(cookie, result => {
-      return this.assert.equal(!!result, false, `Testing that there is no stored cookie: ${cookie}`)
+      this.assert.equal(!!result, false, `Testing that there is no stored cookie: ${cookie}`)
     })
+    return this
   }
 }
 
