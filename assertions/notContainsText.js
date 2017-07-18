@@ -1,16 +1,16 @@
 /**
- * Checks if the given element DOES NOT contain the specified text
+ * Checks if the given element dies NOT contain the specified text.
  *
  * ```
  *    this.demoTest = function (client) {
- *      browser.assert.notContainsText('#main', 'Night Cap')
+ *      browser.assert.notContainsText('#main', 'The Night Watch')
  *    }
  * ```
  *
- * @method textAbsent
- * @param {string} [selector] selector The selector (CSS / Xpath) used to locate the element
- * @param {string} [text] text The text to look for that should not be present
- * @param {string} [msg] optional log message to display in the output. If missing, one is displayed by default
+ * @method notContainsText
+ * @param {string} selector The selector (CSS / Xpath) used to locate the element.
+ * @param {string} text The text to look for that should not be present.
+ * @param {string} [message] Optional log message to display in the output. If missing, one is displayed by default.
  * @api assertions
  */
 
@@ -18,8 +18,8 @@ exports.assertion = function(selector, text, msg) {
 
   const defaultMsg = `Testing if element ${selector} does not contain text: "${text}". `
 
-  const MSG_ELEMENT_NOT_FOUND = `${defaultMsg} Element could not be located.`
-  const MSG_ELEMENT_CONTAINS_TEXT = `${defaultMsg} Element contains text.`
+  const MSG_ELEMENT_NOT_FOUND = defaultMsg + 'Element could not be located.'
+  const MSG_ELEMENT_CONTAINS_TEXT = defaultMsg + 'Element contains text.'
 
   this.message = msg || defaultMsg
 
