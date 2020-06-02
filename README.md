@@ -1,3 +1,7 @@
+-- Note - I no longer use Nightwatch.js for building text suites and haven't for quite some time. Will leave this here in case it is of some value to someone out there on the big bad interwebs, but I recommend [Cypress.io][0] to any clients and use it nearly exlusively for front end and API automation.
+
+[0]: https://www.cypress.io/
+
 # nightcap
 A repository of handy custom commands, assertions, and pageObject
 functions for Nightwatch.
