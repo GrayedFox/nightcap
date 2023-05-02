@@ -1,6 +1,7 @@
-**Please note:** I no longer use Nightwatch.js for building test suites and haven't for quite some time. Will leave this here in case it is of some value to someone out there on the big bad interwebs, but I recommend [Cypress.io][0] to any clients and use it nearly exlusively for front end and API automation.
+**Please note:** I no longer use Nightwatch.js for building test suites and haven't for quite some time. Will leave this here in case it is of some value to someone out there on the big bad interwebs, but I recommend [Cypress.io][0] or [PlayWright][2] and use them nearly exlusively for front end and API automation.
 
 [0]: https://www.cypress.io/
+[2]: https://playwright.dev/docs/intro
 
 # nightcap
 A repository of handy custom commands, assertions, and pageObject
